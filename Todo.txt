@@ -1,0 +1,6 @@
+-configure ssh for ansible
+-Configure hosts
+-create connection profile
+-configure hostname /etc/hosts
+-Configure yum repository
+-install packages

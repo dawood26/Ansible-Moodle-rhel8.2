@@ -1,0 +1,7 @@
+---
+- name: Configure Host name
+  hosts: webserver
+  tasks:
+    - name: Change Hostname
+      hostname:
+        name: webserver

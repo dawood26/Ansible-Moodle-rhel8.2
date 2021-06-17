@@ -1,0 +1,34 @@
+---
+- name: Install php 7.4
+  hosts: webserver
+  vars:
+    packages:
+      - php
+      - php-cli
+      - php-mysqlnd
+      - php-bcmath
+      - php-json
+      - php-fpm
+      - php-zip
+      - php-devel
+      - php-gd
+      - php-mbstring
+      - php-curl
+      - php-xml
+      - php-pear
+      - php-bcmath
+      - php-json
+      - php-intl
+      - php-xmlrpc
+  tasks:
+    - name: install php packages
+      yum:
+        name: '{{ packages }}'
+        state: latest
+      notify: restart-httpd
+
+  handlers:
+    - name: restart-httpd
+      service:
+        name: httpd
+        state: restarted

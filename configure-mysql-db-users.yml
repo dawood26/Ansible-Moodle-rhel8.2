@@ -1,0 +1,19 @@
+---
+- name:
+  hosts: webserver
+  vars:
+    databases:
+      - moodle
+      - joomla
+      - drupal
+  tasks:
+    - name: Add mysql user
+      mysql_user:
+        name: david
+        password: Daw00d26#
+        priv: '*.*:ALL'
+        state: present
+    - name: Create Databases
+      mysql_db:
+        name: '{{ databases }}'
+        state: present

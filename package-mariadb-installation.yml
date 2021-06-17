@@ -1,0 +1,20 @@
+---
+- name: install mariadb package
+  hosts: webserver
+  vars:
+    packages:
+      - mariadb-server
+      - python3-PyMySQL
+  tasks:
+    - name: Install mysql
+      yum:
+        name: '{{ packages }}'
+        state: latest
+      notify: start-enable-mariadb
+
+  handlers:
+    - name: start-enable-mariadb
+      service:
+        name: mariadb
+        enabled: yes
+        state: started

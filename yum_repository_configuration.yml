@@ -1,0 +1,30 @@
+---
+- name: Configure yum repository
+  hosts: webserver
+  tasks:
+    - name: Add BaseOS repository
+      yum_repository:
+        name: BaseOS
+        baseurl: http://192.168.100.190/BaseOS/
+        gpgcheck: no
+        enabled: yes
+        description: BaseOS Linux base packages
+    - name: Add AppStream repository
+      yum_repository:
+        name: AppStream
+        baseurl: http://192.168.100.190/AppStream/
+        gpgcheck: no
+        enabled: yes
+        description: AppStream Linux base packages
+      notify: update-system
+  handlers:
+    - name: update-system
+      yum:
+        name: "*"
+        state: latest
+
+
+
+
+
+

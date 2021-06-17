@@ -1,0 +1,17 @@
+---
+- name: install httpd package
+  hosts: webserver
+  tasks:
+    - name: Install httpd
+      yum:
+        name: httpd
+      notify: enable-start-httpd
+  handlers:
+    - name: enable-start-httpd
+      service:
+        name: httpd
+        enabled: yes
+        state: started
+
+
+
